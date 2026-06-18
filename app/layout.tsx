@@ -35,10 +35,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
-  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const [toastMessage, setToastMessage] = useState<string>("");
-  const [scrolled, setScrolled] = useState<boolean>(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -75,6 +75,7 @@ export default function RootLayout({
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
@@ -91,23 +92,24 @@ export default function RootLayout({
           }}
         >
           {/* Announcement Bar */}
-          <div className="bg-[#111111] text-white text-center py-2 px-5 text-[11px] uppercase tracking-[2.5px] font-light">
+          <div className="bg-[#111111] text-white text-center py-2 px-4 text-[11px] uppercase tracking-[2.5px] font-light">
             Complimentary Worldwide Shipping on Orders Over $350
           </div>
 
-          {/* Navigation Hub */}
+          {/* HEADER */}
           <header
             className={`fixed left-0 w-full z-40 bg-white/95 border-b border-[#f2f2f2] transition-all duration-500 ${
               scrolled ? "top-0 shadow-sm" : "top-[33px]"
             }`}
           >
             <div
-              className={`max-w-[1400px] mx-auto px-10 flex justify-between items-center transition-all duration-500 ${
+              className={`max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between relative transition-all duration-500 ${
                 scrolled ? "h-[65px]" : "h-[90px]"
               }`}
             >
+              {/* LEFT NAV */}
               <nav className="hidden md:block">
-                <ul className="flex gap-9 text-[12px] uppercase tracking-[2px]">
+                <ul className="flex gap-8 text-[12px] uppercase tracking-[2px]">
                   <li>
                     <Link
                       href="/"
@@ -133,42 +135,50 @@ export default function RootLayout({
                 </ul>
               </nav>
 
-              <div className="absolute left-1/2 -translate-x-1/2 text-center">
+              {/* MOBILE MENU BUTTON */}
+              <button className="md:hidden text-[12px] uppercase tracking-[2px]">
+                Menu
+              </button>
+
+              {/* CENTER LOGO */}
+              <div className="flex-1 flex justify-center md:absolute md:left-1/2 md:-translate-x-1/2 text-center">
                 <Link href="/" className="flex flex-col items-center">
-                  <span className="text-[18px] tracking-[4px] font-semibold leading-none">
+                  <span className="text-[16px] sm:text-[18px] tracking-[4px] font-semibold leading-none">
                     WS
                   </span>
-                  <span className="text-[15px] tracking-[5px] font-normal mt-1">
+                  <span className="text-[12px] sm:text-[15px] tracking-[5px] font-normal mt-1">
                     WEAR SHANIRA
                   </span>
                 </Link>
               </div>
 
-              <div className="flex items-center gap-6 text-[12px] uppercase tracking-[1px]">
+              {/* RIGHT ACTIONS */}
+              <div className="flex items-center gap-3 sm:gap-6 text-[11px] sm:text-[12px] uppercase tracking-[1px]">
                 <button
                   onClick={() => setIsSearchOpen(!isSearchOpen)}
                   className="hover:opacity-60"
                 >
                   Search
                 </button>
+
                 <button
                   onClick={() => setIsCartOpen(true)}
                   className="relative hover:opacity-60"
                 >
-                  Bag{" "}
-                  <span className="ml-1 bg-[#111111] text-white text-[9px] w-4 h-4 rounded-full inline-flex items-center justify-content-center absolute -top-1 -right-[14px]">
+                  Bag
+                  <span className="ml-1 bg-[#111111] text-white text-[9px] w-4 h-4 rounded-full inline-flex items-center justify-center absolute -top-1 -right-[14px]">
                     {cartCount}
                   </span>
                 </button>
               </div>
             </div>
 
-            {/* Dropdown Search Panel */}
+            {/* SEARCH */}
             {isSearchOpen && (
-              <div className="w-full bg-white px-10 py-5 border-t border-[#eeeeee] flex justify-center items-center animate-fade-in-up">
+              <div className="w-full bg-white px-4 sm:px-10 py-5 border-t border-[#eeeeee] flex justify-center">
                 <input
                   type="text"
-                  className="w-[600px] border-b border-[#111111] py-2 text-[16px] tracking-[1px] outline-none uppercase placeholder:text-gray-300"
+                  className="w-full max-w-[600px] border-b border-[#111111] py-2 text-[14px] sm:text-[16px] tracking-[1px] outline-none uppercase placeholder:text-gray-300"
                   placeholder="Search collection..."
                   autoFocus
                 />
@@ -176,54 +186,53 @@ export default function RootLayout({
             )}
           </header>
 
-          <main className="pt-[123px]">{children}</main>
+          <main className="pt-[120px]">{children}</main>
 
-          {/* Slide-out Shopping Drawer */}
+          {/* CART OVERLAY */}
           {isCartOpen && (
             <div
-              className="fixed inset-0 bg-black/15 z-50 transition-opacity"
+              className="fixed inset-0 bg-black/20 z-50"
               onClick={() => setIsCartOpen(false)}
             />
           )}
+
+          {/* CART DRAWER */}
           <div
-            className={`fixed top-0 right-0 h-screen w-full sm:w-[420px] bg-white shadow-xl z-50 flex flex-col transition-transform duration-500 ease-out ${
+            className={`fixed top-0 right-0 h-screen w-full sm:w-[420px] bg-white shadow-xl z-50 flex flex-col transition-transform duration-500 ${
               isCartOpen ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            <div className="p-[30px] border-b border-[#eeeeee] flex justify-between items-center">
+            <div className="p-[25px] border-b flex justify-between items-center">
               <h4 className="text-[16px]">Your Shopping Bag</h4>
-              <button
-                className="text-[24px] hover:opacity-60"
-                onClick={() => setIsCartOpen(false)}
-              >
-                &times;
-              </button>
+              <button onClick={() => setIsCartOpen(false)}>&times;</button>
             </div>
 
-            <div className="flex-1 p-[30px] overflow-y-auto">
+            <div className="flex-1 p-[25px] overflow-y-auto">
               {cart.length === 0 ? (
-                <p className="text-center text-gray-400 italic mt-10 text-[14px]">
+                <p className="text-center text-gray-400 mt-10 text-[14px]">
                   Your bag is empty.
                 </p>
               ) : (
                 cart.map((item) => (
                   <div
                     key={item.id}
-                    className="flex gap-5 mb-6 pb-6 border-b border-[#f9f9f9] items-center"
+                    className="flex gap-4 mb-5 pb-5 border-b items-center"
                   >
-                    <div className="w-[70px] h-[90px] bg-[#f7f7f7] flex items-center justify-center p-2">
+                    <div className="w-[70px] h-[90px] bg-[#f7f7f7] flex items-center justify-center">
                       {item.icon}
                     </div>
+
                     <div className="flex-1">
-                      <h5 className="text-[13px] uppercase tracking-[1px] font-medium">
+                      <h5 className="text-[13px] uppercase">
                         {item.name} ({item.quantity})
                       </h5>
-                      <div className="text-[13px] text-gray-600 mt-1">
+                      <p className="text-[13px] text-gray-600">
                         ${item.price * item.quantity}
-                      </div>
+                      </p>
+
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className="text-[11px] text-gray-400 uppercase tracking-[0.5px] mt-2 hover:text-[#111111]"
+                        className="text-[11px] text-gray-400 mt-2 hover:text-black"
                       >
                         Remove
                       </button>
@@ -233,50 +242,45 @@ export default function RootLayout({
               )}
             </div>
 
-            <div className="p-[30px] border-t border-[#eeeeee] bg-[#fbfbfb]">
-              <div className="flex justify-between mb-5 text-[14px] uppercase tracking-[1px]">
+            <div className="p-[25px] border-t bg-[#fbfbfb]">
+              <div className="flex justify-between text-[14px] mb-4 uppercase">
                 <span>Subtotal</span>
                 <span>${cartSubtotal.toFixed(2)}</span>
               </div>
-              <button
-                className="w-full bg-[#111111] text-white text-[11px] tracking-[3px] uppercase py-4 transition-all duration-300 hover:bg-[#333333]"
-                onClick={() => alert("Proceeding to checkout.")}
-              >
-                Proceed to Checkout
+
+              <button className="w-full bg-black text-white py-4 text-[11px] uppercase tracking-[3px]">
+                Checkout
               </button>
             </div>
           </div>
 
-          {/* Toast Notification */}
+          {/* TOAST */}
           {toastMessage && (
-            <div className="fixed bottom-8 left-8 bg-[#111111] text-white py-4 px-8 text-[12px] uppercase tracking-[2px] z-50 shadow-md">
+            <div className="fixed bottom-6 left-6 bg-black text-white px-6 py-3 text-[11px] uppercase">
               {toastMessage}
             </div>
           )}
 
-          <footer className="border-t border-[#eeeeee] bg-white py-14 text-center">
-            <div className="max-w-[1400px] mx-auto px-10">
+          {/* FOOTER */}
+          <footer className="border-t py-14 text-center">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-10">
               <div className="text-[14px] tracking-[4px] mb-5">
                 Wear Shanira
               </div>
-              <ul className="flex justify-center gap-8 mb-8 text-[11px] uppercase tracking-[2px] text-gray-500">
+
+              <ul className="flex justify-center gap-6 text-[11px] uppercase text-gray-500 mb-8 flex-wrap">
                 <li>
-                  <Link href="#" className="hover:opacity-60">
-                    Privacy Policy
-                  </Link>
+                  <Link href="#">Privacy Policy</Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:opacity-60">
-                    Terms of Service
-                  </Link>
+                  <Link href="#">Terms of Service</Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:opacity-60">
-                    Store Locator
-                  </Link>
+                  <Link href="#">Store Locator</Link>
                 </li>
               </ul>
-              <div className="text-[11px] text-gray-400 tracking-[1px]">
+
+              <div className="text-[11px] text-gray-400">
                 © 2026 Wear Shanira
               </div>
             </div>
