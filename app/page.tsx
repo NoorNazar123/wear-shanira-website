@@ -314,7 +314,7 @@ export default function HomePage() {
       </section>
 
       {/* About Brand Quote Section - Adjusted to py-[120px] */}
-      <section className="py-[120px] bg-[#fafafa] border-t border-[#f2f2f2] text-center">
+      <section className="py-[120px] border-t border-[#f2f2f2] text-center">
         <div className="max-w-[750px] mx-auto px-5">
           <div className="text-[24px] tracking-[6px] mb-9">Wear Shanira</div>
           <p className="font-serif text-[18px] sm:text-[20px] leading-[1.8] text-[#222222] italic">
