@@ -9,6 +9,7 @@ export interface Product {
   price: number;
   desc: string;
   icon: React.ReactNode;
+  image?: string; // ✅ optional image
 }
 
 interface ProductCardProps {
@@ -17,25 +18,37 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
       <div className="relative bg-white group">
         {/* PRODUCT BOX */}
         <div className="relative w-full pt-[135px] bg-[#fcfcfc] overflow-hidden flex items-center justify-center mb-6">
-          {/* ICON */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45%] h-[45%] opacity-15 transition-transform duration-700 group-hover:scale-105">
-            {product.icon}
+          {/* IMAGE / ICON AREA */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] opacity-80 flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
+            {product.image ? (
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-full object-contain"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                {product.icon}
+              </div>
+            )}
           </div>
 
-          {/* ACTIONS */}
+          {/* ACTION BUTTONS */}
           <div
             className="
               absolute bottom-0 left-0 w-full p-5 flex flex-col gap-2
               bg-gradient-to-t from-white/95 to-transparent
+
               translate-y-0
               md:translate-y-full md:group-hover:translate-y-0
+
               transition-transform duration-500 ease-out
             "
           >
@@ -84,6 +97,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           {/* MODAL BOX */}
           <div className="bg-white w-[800px] max-w-full grid grid-cols-1 md:grid-cols-2 relative animate-fade-in-up z-10">
+            {/* CLOSE BUTTON */}
             <button
               className="absolute top-5 right-6 text-[24px] leading-none hover:opacity-60"
               onClick={() => setIsModalOpen(false)}
@@ -91,12 +105,20 @@ export default function ProductCard({ product }: ProductCardProps) {
               &times;
             </button>
 
-            {/* LEFT */}
+            {/* LEFT IMAGE / ICON */}
             <div className="bg-[#fcfcfc] flex items-center justify-center p-14 h-[350px] md:h-auto">
-              <div className="w-[60%] h-[60%] opacity-20">{product.icon}</div>
+              {product.image ? (
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-[70%] h-[70%] object-contain"
+                />
+              ) : (
+                <div className="w-[60%] h-[60%] opacity-20">{product.icon}</div>
+              )}
             </div>
 
-            {/* RIGHT */}
+            {/* RIGHT CONTENT */}
             <div className="p-12 flex flex-col justify-center">
               <h3 className="text-[24px] mb-4">{product.name}</h3>
 

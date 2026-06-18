@@ -80,6 +80,7 @@ export const bagsCatalog: Product[] = [
     name: "Classic Tote Bag",
     price: 450,
     desc: "Timeless structural silhouette crafted for everyday sophistication with premium Italian grain leather structural handles.",
+    image: "/images/hero-wear-shanira.png",
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M30 45 C30 25, 70 25, 70 45" />
@@ -93,6 +94,7 @@ export const bagsCatalog: Product[] = [
     name: "Mini Handbag",
     price: 320,
     desc: "A compact luxury statement designed to elevate evening ensembles, equipped with hand-polished metallic hardware accents.",
+    image: "/images/hero-wear-shanira-2.png",
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M35 40 C35 20, 65 20, 65 40" />
@@ -106,6 +108,7 @@ export const bagsCatalog: Product[] = [
     name: "Premium Shoulder Bag",
     price: 580,
     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
+    image: "/images/hero-wear-shanira-3.png",
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
@@ -114,11 +117,14 @@ export const bagsCatalog: Product[] = [
       </svg>
     ),
   },
+
+  // fallback products still use images (same for now)
   {
     id: "4",
     name: "Premium Shoulder Bag",
     price: 580,
     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
+    image: "/images/hero-wear-shanira.png",
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
@@ -132,6 +138,7 @@ export const bagsCatalog: Product[] = [
     name: "Premium Shoulder Bag",
     price: 580,
     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
+    image: "/images/hero-wear-shanira-2.png",
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
@@ -145,45 +152,7 @@ export const bagsCatalog: Product[] = [
     name: "Premium Shoulder Bag",
     price: 580,
     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
-    icon: (
-      <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
-        <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
-        <path d="M25 35 Q50 10 75 35" />
-        <path d="M25 45 H75" />
-      </svg>
-    ),
-  },
-  {
-    id: "7",
-    name: "Premium Shoulder Bag",
-    price: 580,
-    desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
-    icon: (
-      <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
-        <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
-        <path d="M25 35 Q50 10 75 35" />
-        <path d="M25 45 H75" />
-      </svg>
-    ),
-  },
-  {
-    id: "8",
-    name: "Premium Shoulder Bag",
-    price: 580,
-    desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
-    icon: (
-      <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
-        <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
-        <path d="M25 35 Q50 10 75 35" />
-        <path d="M25 45 H75" />
-      </svg>
-    ),
-  },
-  {
-    id: "9",
-    name: "Premium Shoulder Bag",
-    price: 580,
-    desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
+    image: "/images/hero-wear-shanira-3.png",
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
@@ -193,7 +162,6 @@ export const bagsCatalog: Product[] = [
     ),
   },
 ];
-
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
