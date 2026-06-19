@@ -9,7 +9,8 @@ export interface Product {
   price: number;
   desc: string;
   icon: React.ReactNode;
-  image?: string; // ✅ optional image
+  images: string[]; // Array of images for color variants
+  selectedImage?: string; // Optional property for the selected image
 }
 
 interface ProductCardProps {
@@ -20,6 +21,13 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Use a fallback image if `product.images` is undefined or empty
+  const [selectedImage, setSelectedImage] = useState(
+    product.images && product.images.length > 0
+      ? product.images[0]
+      : "/images/default-image.jpg" // Replace with your default image path
+  );
+
   return (
     <>
       <div className="relative bg-white group">
@@ -27,17 +35,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="relative w-full pt-[135px] bg-[#fcfcfc] overflow-hidden flex items-center justify-center mb-6">
           {/* IMAGE / ICON AREA */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] opacity-80 flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
-            {product.image ? (
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-contain"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                {product.icon}
-              </div>
-            )}
+            <img
+              src={selectedImage} // Display the selected image
+              alt={product.name}
+              className="w-full h-full object-contain"
+            />
           </div>
 
           {/* ACTION BUTTONS */}
@@ -52,18 +54,23 @@ export default function ProductCard({ product }: ProductCardProps) {
               transition-transform duration-500 ease-out
             "
           >
-            {/* ADD TO BAG */}
+            {/* ADD TO BAG BUTTON */}
             <button
-              onClick={() => addToCart(product)}
+              onClick={() => {
+                addToCart({
+                  ...product, // Spread the product details
+                  selectedImage, // Add the selected image
+                } as Product & { selectedImage: string }); // Extend the Product type
+                setIsModalOpen(false);
+              }}
               className="
-                w-full bg-[#111111] text-white text-[11px]
-                tracking-[3px] uppercase py-3
-                transition-colors duration-300 hover:bg-[#333333]
-              "
+    w-full bg-[#111111] text-white text-[11px]
+    tracking-[3px] uppercase py-4
+    transition-colors hover:bg-[#333333]
+  "
             >
               Add To Bag
             </button>
-
             {/* QUICK VIEW */}
             <button
               onClick={() => setIsModalOpen(true)}
@@ -96,7 +103,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
 
           {/* MODAL BOX */}
-          <div className="bg-white w-[800px] max-w-full grid grid-cols-1 md:grid-cols-2 relative animate-fade-in-up z-10">
+          <div className="bg-white w-[1200px] h-[800px] max-w-full max-h-full grid grid-cols-1 md:grid-cols-2 relative animate-fade-in-up z-10 rounded-lg shadow-lg overflow-hidden">
             {/* CLOSE BUTTON */}
             <button
               className="absolute top-5 right-6 text-[24px] leading-none hover:opacity-60"
@@ -106,16 +113,14 @@ export default function ProductCard({ product }: ProductCardProps) {
             </button>
 
             {/* LEFT IMAGE / ICON */}
-            <div className="bg-[#fcfcfc] flex items-center justify-center p-14 h-[350px] md:h-auto">
-              {product.image ? (
+            <div className="bg-[#fcfcfc] flex items-center justify-center p-14 h-full">
+              <div className="group relative w-full h-full flex items-center justify-center">
                 <img
-                  src={product.image}
+                  src={selectedImage} // Display the selected image
                   alt={product.name}
-                  className="w-[70%] h-[70%] object-contain"
+                  className="w-[70%] h-[70%] object-contain transition-transform duration-500 ease-in-out group-hover:scale-125"
                 />
-              ) : (
-                <div className="w-[60%] h-[60%] opacity-20">{product.icon}</div>
-              )}
+              </div>
             </div>
 
             {/* RIGHT CONTENT */}
@@ -130,16 +135,36 @@ export default function ProductCard({ product }: ProductCardProps) {
                 {product.desc}
               </p>
 
+              {/* COLOR VARIANTS */}
+              <div className="flex gap-2 mb-6">
+                {product.images.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Variant ${index + 1}`}
+                    className={`w-12 h-12 cursor-pointer border ${
+                      selectedImage === image
+                        ? "border-black"
+                        : "border-gray-300"
+                    }`}
+                    onClick={() => setSelectedImage(image)} // Change the selected image
+                  />
+                ))}
+              </div>
+
               <button
                 onClick={() => {
-                  addToCart(product);
+                  addToCart({
+                    ...product,
+                    selectedImage, // Include the selected image
+                  });
                   setIsModalOpen(false);
                 }}
                 className="
-                  w-full bg-[#111111] text-white text-[11px]
-                  tracking-[3px] uppercase py-4
-                  transition-colors hover:bg-[#333333]
-                "
+    w-full bg-[#111111] text-white text-[11px]
+    tracking-[3px] uppercase py-4
+    transition-colors hover:bg-[#333333]
+  "
               >
                 Add To Bag
               </button>

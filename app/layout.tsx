@@ -48,16 +48,16 @@ export default function RootLayout({
   }, []);
 
   const addToCart = (product: Product) => {
-    setCart((prev) => {
-      const exists = prev.find((item) => item.id === product.id);
+    setCart((prevCart) => {
+      const exists = prevCart.find((item) => item.id === product.id);
       if (exists) {
-        return prev.map((item) =>
+        return prevCart.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
-      return [...prev, { ...product, quantity: 1 }];
+      return [...prevCart, { ...product, quantity: 1 }];
     });
     triggerToast(`${product.name} added to bag`);
   };

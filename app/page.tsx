@@ -80,7 +80,11 @@ export const bagsCatalog: Product[] = [
     name: "Classic Tote Bag",
     price: 450,
     desc: "Timeless structural silhouette crafted for everyday sophistication with premium Italian grain leather structural handles.",
-    image: "/images/hero-wear-shanira.png",
+    images: [
+      "/images/hero-wear-shanira.png",
+      "/images/hero-wear-shanira-2.png",
+      "/images/hero-wear-shanira-3.png",
+    ],
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M30 45 C30 25, 70 25, 70 45" />
@@ -94,7 +98,11 @@ export const bagsCatalog: Product[] = [
     name: "Mini Handbag",
     price: 320,
     desc: "A compact luxury statement designed to elevate evening ensembles, equipped with hand-polished metallic hardware accents.",
-    image: "/images/hero-wear-shanira-2.png",
+    images: [
+      "/images/hero-wear-shanira-2.png",
+      "/images/hero-wear-shanira-3.png",
+      "/images/hero-wear-shanira.png",
+    ],
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M35 40 C35 20, 65 20, 65 40" />
@@ -108,7 +116,11 @@ export const bagsCatalog: Product[] = [
     name: "Premium Shoulder Bag",
     price: 580,
     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
-    image: "/images/hero-wear-shanira-3.png",
+    images: [
+      "/images/hero-wear-shanira-3.png",
+      "/images/hero-wear-shanira.png",
+      "/images/hero-wear-shanira-2.png",
+    ],
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
@@ -117,14 +129,16 @@ export const bagsCatalog: Product[] = [
       </svg>
     ),
   },
-
-  // fallback products still use images (same for now)
   {
     id: "4",
     name: "Premium Shoulder Bag",
     price: 580,
     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
-    image: "/images/hero-wear-shanira.png",
+    images: [
+      "/images/hero-wear-shanira.png",
+      "/images/hero-wear-shanira-2.png",
+      "/images/hero-wear-shanira-3.png",
+    ],
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
@@ -138,7 +152,11 @@ export const bagsCatalog: Product[] = [
     name: "Premium Shoulder Bag",
     price: 580,
     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
-    image: "/images/hero-wear-shanira-2.png",
+    images: [
+      "/images/hero-wear-shanira-2.png",
+      "/images/hero-wear-shanira-3.png",
+      "/images/hero-wear-shanira.png",
+    ],
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
@@ -152,7 +170,11 @@ export const bagsCatalog: Product[] = [
     name: "Premium Shoulder Bag",
     price: 580,
     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
-    image: "/images/hero-wear-shanira-3.png",
+    images: [
+      "/images/hero-wear-shanira-3.png",
+      "/images/hero-wear-shanira.png",
+      "/images/hero-wear-shanira-2.png",
+    ],
     icon: (
       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
@@ -162,6 +184,95 @@ export const bagsCatalog: Product[] = [
     ),
   },
 ];
+
+// export const bagsCatalog: Product[] = [
+//   {
+//     id: "1",
+//     name: "Classic Tote Bag",
+//     price: 450,
+//     desc: "Timeless structural silhouette crafted for everyday sophistication with premium Italian grain leather structural handles.",
+//     image: "/images/hero-wear-shanira.png",
+//     icon: (
+//       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
+//         <path d="M30 45 C30 25, 70 25, 70 45" />
+//         <rect x="20" y="45" width="60" height="40" rx="2" />
+//         <line x1="20" y1="55" x2="80" y2="55" />
+//       </svg>
+//     ),
+//   },
+//   {
+//     id: "2",
+//     name: "Mini Handbag",
+//     price: 320,
+//     desc: "A compact luxury statement designed to elevate evening ensembles, equipped with hand-polished metallic hardware accents.",
+//     image: "/images/hero-wear-shanira-2.png",
+//     icon: (
+//       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
+//         <path d="M35 40 C35 20, 65 20, 65 40" />
+//         <rect x="25" y="40" width="50" height="35" rx="8" />
+//         <circle cx="50" cy="58" r="4" />
+//       </svg>
+//     ),
+//   },
+//   {
+//     id: "3",
+//     name: "Premium Shoulder Bag",
+//     price: 580,
+//     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
+//     image: "/images/hero-wear-shanira-3.png",
+//     icon: (
+//       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
+//         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
+//         <path d="M25 35 Q50 10 75 35" />
+//         <path d="M25 45 H75" />
+//       </svg>
+//     ),
+//   },
+
+//   // fallback products still use images (same for now)
+//   {
+//     id: "4",
+//     name: "Premium Shoulder Bag",
+//     price: 580,
+//     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
+//     image: "/images/hero-wear-shanira.png",
+//     icon: (
+//       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
+//         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
+//         <path d="M25 35 Q50 10 75 35" />
+//         <path d="M25 45 H75" />
+//       </svg>
+//     ),
+//   },
+//   {
+//     id: "5",
+//     name: "Premium Shoulder Bag",
+//     price: 580,
+//     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
+//     image: "/images/hero-wear-shanira-2.png",
+//     icon: (
+//       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
+//         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
+//         <path d="M25 35 Q50 10 75 35" />
+//         <path d="M25 45 H75" />
+//       </svg>
+//     ),
+//   },
+//   {
+//     id: "6",
+//     name: "Premium Shoulder Bag",
+//     price: 580,
+//     desc: "Perfect balance of sleek architecture and effortless grace featuring adjustable luxury crossbody extensions.",
+//     image: "/images/hero-wear-shanira-3.png",
+//     icon: (
+//       <svg viewBox="0 0 100 100" fill="none" stroke="#111111" strokeWidth="0.7">
+//         <path d="M25 35 V70 C25 75, 75 75, 75 70 V35 Z" />
+//         <path d="M25 35 Q50 10 75 35" />
+//         <path d="M25 45 H75" />
+//       </svg>
+//     ),
+//   },
+// ];
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
